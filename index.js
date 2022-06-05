@@ -29,7 +29,7 @@ AFRAME.registerComponent('mirror', {
           this.counter = this.data.interval;
 
           const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( this.data.resolution, { format: THREE.RGBFormat, generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter } );
-	        this.cam = new THREE.CubeCamera( 0.5, this.data.distance, cubeRenderTarget);
+	  this.cam = new THREE.CubeCamera( 0.5, this.data.distance, cubeRenderTarget);
           this.el.object3D.add( this.cam );
           this.mirrorMaterial = new THREE.MeshBasicMaterial( { color: this.data.color, refractionRatio: this.data.refraction, envMap: this.cam.renderTarget.texture } );
           this.done = false;
