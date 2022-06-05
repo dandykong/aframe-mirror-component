@@ -79,7 +79,6 @@
 	          this.mirrorMaterial = new THREE.MeshBasicMaterial( { color: this.data.color, refractionRatio: this.data.refraction, envMap: this.cam.renderTarget.texture } );
 	          this.done = false;
 	          var mirrormat = this.mirrorMaterial;
-		  var camVector = new THREE.Vector3();
 	          this.mesh = this.el.getObject3D('mesh');
 	          if(this.mesh){
 	            this.mesh.traverse( function( child ) { 
@@ -98,6 +97,7 @@
 	        if(this.mesh){
 	            this.mesh.visible = false;
 	            AFRAME.scenes[0].renderer.autoClear = true;
+		    var camVector = new THREE.Vector3();
 		    this.el.object3D.getWorldPosition(camVector);
 	            this.cam.position.copy(this.el.object3D.worldToLocal(camVector));
 	            this.cam.updateCubeMap( AFRAME.scenes[0].renderer, this.el.sceneEl.object3D );
