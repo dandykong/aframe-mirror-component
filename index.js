@@ -52,7 +52,9 @@ AFRAME.registerComponent('mirror', {
         if(this.mesh){
             this.mesh.visible = false;
             AFRAME.scenes[0].renderer.autoClear = true;
-            this.cam.position.copy(this.el.object3D.worldToLocal(this.el.object3D.getWorldPosition()));
+	    var camVector = new THREE.Vector3();
+	    this.el.object3D.getWorldPosition(camVector);
+	    this.cam.position.copy(this.el.object3D.worldToLocal(camVector));
             this.cam.updateCubeMap( AFRAME.scenes[0].renderer, this.el.sceneEl.object3D );
             
             var mirrormat = this.mirrorMaterial;
