@@ -74,7 +74,7 @@
 	  init: function(){
 	          this.counter = this.data.interval;
 		  const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( this.data.resolution, { format: THREE.RGBFormat, generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter } );
-	          this.cam = new THREE.CubeCamera( 0.5, this.data.distance, cubeRenderTarget);
+	          this.cam = new THREE.CubeCamera( 0.001, this.data.distance, cubeRenderTarget);
 	          this.el.object3D.add( this.cam );
 	          this.mirrorMaterial = new THREE.MeshBasicMaterial( { color: this.data.color, refractionRatio: this.data.refraction, envMap: this.cam.renderTarget.texture } );
 	          this.done = false;
@@ -100,7 +100,7 @@
 		    var camVector = new THREE.Vector3();
 		    this.el.object3D.getWorldPosition(camVector);
 	            this.cam.position.copy(this.el.object3D.worldToLocal(camVector));
-	            this.cam.updateCubeMap( AFRAME.scenes[0].renderer, this.el.sceneEl.object3D );
+	            this.cam.update( AFRAME.scenes[0].renderer, this.el.sceneEl.object3D );
 	            
 	            var mirrormat = this.mirrorMaterial;
 	            this.mesh.traverse( function( child ) { 
